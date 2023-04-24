@@ -14,6 +14,6 @@ explain the existing files in this repo:
  
 - use_module_w2v.py: This file is used as an input of a .txt file (this file data must be filtered to perform word embedding before entering the model) to print out the vectors corresponding to those words.
 
-Note: the output if vectors.txt
+Note: the output is vectors.txt
 
 - .txt files: is the output of .py files with corresponding names
