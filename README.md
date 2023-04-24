@@ -8,4 +8,12 @@ explain the existing files in this repo:
  
  Note: the output will be a txt file (tokenized.txt) containing sentences where each word is separated by a space and sentences are separated by a carriage return.
 
+- train_word2vec.py: this file will train the word2vec model with tokenized.txt.
+
+ Note: the output is model_w2v.bin, this is the trained model, when using it just call it to find the vector of new data.
+ 
+- use_module_w2v.py: This file is used as an input of a .txt file (this file data must be filtered to perform word embedding before entering the model) to print out the vectors corresponding to those words.
+
+Note: the output if vectors.txt
+
 - .txt files: is the output of .py files with corresponding names
