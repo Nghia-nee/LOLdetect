@@ -5,6 +5,9 @@ import yaml
 # Đường dẫn tới thư mục chứa các file .md và .yml
 dir_path = r'D:\Desktop\LOLBAS'
 
+# Set để theo dõi các dòng đã lưu trước đó
+saved_lines = set()
+
 # Duyệt qua các tệp tin .md và .yml trong thư mục và các thư mục con
 with open('D:\\Desktop\\filtered.txt', 'w', encoding='utf-8') as f:
     for root, dirs, files in os.walk(dir_path):
@@ -44,7 +47,10 @@ with open('D:\\Desktop\\filtered.txt', 'w', encoding='utf-8') as f:
                                 break
                             detection_content += line + ' '
 
-                        f.write(f"{full_path_content}: {detection_content}\n")
+                        # Kiểm tra xem dòng hiện tại có bị trùng với các dòng đã lưu hay không
+                        if detection_content not in saved_lines:
+                            saved_lines.add(detection_content)
+                            f.write(f"{full_path_content}: {detection_content}\n")
 
             # Nếu là file .yml
             elif file_name.endswith('.yml'):
@@ -55,6 +61,9 @@ with open('D:\\Desktop\\filtered.txt', 'w', encoding='utf-8') as f:
                 if 'Commands' in data:
                     for command in data['Commands']:
                         if 'Command' in command and 'Description' in command:
-                            f.write(command['Command'] + '\n')
+                            command_content = command['Command']
+                            if command_content not in saved_lines:
+                                saved_lines.add(command_content)
+                                f.write(command_content + '\n')
                 else:
                     f.write(f"")
